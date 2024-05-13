@@ -1,7 +1,7 @@
 package main
 
 import (
-	"crypto/sha1"
+	"crypto/sha512"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -15,7 +15,7 @@ func hashFile(path string) {
 		fmt.Println(err)
 		return
 	}
-	hash := sha1.Sum(data)
+	hash := sha512.Sum512(data)
 	hashKey := fmt.Sprintf("%x", hash)
 	fileHashes[hashKey] = append(fileHashes[hashKey], path)
 
