@@ -28,12 +28,18 @@ func ifNotIsDir(path string, f os.FileInfo, _ error) error {
 }
 
 func searchFileByName(fileName string) {
+	var anyFileFound = false
 	for path := range fileHashes {
 		if filepath.Base(path) == fileName {
+			anyFileFound = true
 			fmt.Println("File found:", path)
-			return
 		}
 	}
+
+	if anyFileFound {
+		return
+	}
+
 	fmt.Println("File not found")
 }
 
