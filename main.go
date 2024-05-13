@@ -19,7 +19,7 @@ func hashFile(path string) {
 	fileHashes[path] = fmt.Sprintf("%x", hash)
 }
 
-func ifNotIsDir(path string, f os.FileInfo, err error) error {
+func ifNotIsDir(path string, f os.FileInfo, _ error) error {
 	if !f.IsDir() {
 		hashFile(path)
 	}
@@ -28,7 +28,7 @@ func ifNotIsDir(path string, f os.FileInfo, err error) error {
 }
 
 func searchFileByName(fileName string) {
-	for path, _ := range fileHashes {
+	for path := range fileHashes {
 		if filepath.Base(path) == fileName {
 			fmt.Println("File found:", path)
 			return
